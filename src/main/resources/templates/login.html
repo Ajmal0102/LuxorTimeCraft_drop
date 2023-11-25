@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<!--    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">-->
+    <title> Login | LuxorTimeCraft </title>
+    <style>
+        body {
+          background-color: #f8f9fa;
+        }
+        .login-card {
+          max-width: 400px;
+          margin: 50px auto;
+          padding: 20px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          background-color: #fff;
+        }
+        .custom-bg {
+            background-color: #2d3748; /* Use the desired color code */
+        }
+    </style>
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark custom-bg">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <span class="text-white">LuxorTimeCraft</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a th:href="@{/}" class="nav-link text-white" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/shop}" class="nav-link text-white" href="#">Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/register}" class="nav-link text-white" href="#">SignUp</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 mx-auto">
+            <div class="login-card">
+                <h2>Login</h2>
+                <p>Please fill out this to login</p>
+                <form th:action="@{/login}" method="post">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" placeholder="Your Email" class="form-control form-control-lg">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control form-control-lg" placeholder="Password" name="password" id="password">
+                    </div>
+                    <div th:if="${param.error}" class="alert alert-error text-danger">
+                        <p th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></p>
+                    </div>
+
+                    <input type="submit" value="Login" class="btn btn-primary btn-block">
+                    <br>
+                    <span >Don't have an account <a class="linkControl" href="./register.html"
+                                                    th:href="@{/register}">Register here</a></span>
+                    <br>
+                    <a href="" th:href="@{/forgotpassword}">Forgot password ?</a>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

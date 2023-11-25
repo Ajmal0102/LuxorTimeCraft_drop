@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Product Name</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+<body class="font-sans bg-gray-100">
+
+<!-- navbar  -->
+<nav class="bg-gray-800 text-white p-3">
+    <div class="container mx-auto flex items-center justify-between p-4">
+        <a href="#" class="text-lg font-bold">
+            <span class="text-white-500">LuxorTimeCraft</span>
+        </a>
+        <button class="lg:hidden">
+            <svg class="fill-current text-gray-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+
+        <div class="hidden lg:flex items-center">
+            <ul class="flex space-x-4">
+                <li>
+                    <a th:href="@{/}" href="#" class="text-white-500 hover:text-blue-500">Home</a>
+                </li>
+                <li>
+                    <a th:href="@{/shop}" href="#" class="text-white-500 hover:text-blue-500">Shop</a>
+                </li>
+                <li>
+                    <a th:if="${#authorization.expression('isAnonymous()')}" th:href="@{/login}" href="#" class="text-white-500 hover:text-blue-500">Login</a>
+                </li>
+                <li>
+                    <a th:if="${#authorization.expression('isAuthenticated()')}" th:href="@{/logout}" href="#" class="text-white-500 hover:text-blue-500">Logout</a>
+                </li>
+                <li>
+                    <a th:href="@{/cart}" href="#" class="text-white-500 hover:text-blue-500">Cart</a>
+                </li>
+                <li>
+                    <span th:text="${cartCount}" class="text-white-500"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- Product details section -->
+<div class="container mx-auto my-8 p-8 bg-white rounded-lg shadow-lg flex">
+
+    <!-- Product image -->
+    <div class="w-1/2 pr-8">
+        <img th:src="@{${'/productImages/' + product.imageName}}" alt="" class="w-full h-auto object-cover rounded-lg">
+    </div>
+
+    <!-- Product details -->
+    <div class="w-1/2">
+        <h1 th:text="${product.name}" class="text-3xl font-semibold mb-2">Your Product Name</h1>
+        <p th:text="${product.category.name}" class="text-gray-600 mb-2">Category: Category Name</p>
+        <p class="text-gray-600 mb-2">Price: ₹ <span th:text="${product.price}"></span></p>
+        <p class="text-gray-600 mb-2">Stock: <span th:text="${product.count}"></span> left</p>
+        <p th:text="${product.description}" class="text-gray-600 mb-4">Product description .</p>
+
+        <!-- Add to Cart button -->
+        <div class="flex items-center">
+            <button class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"><a href="" th:href="@{/addToCart/{id}(id = ${product.id})}">Add to cart</a></button>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

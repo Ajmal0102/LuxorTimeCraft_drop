@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Otp Page</title>
+    <!-- Include the Tailwind CSS stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+<div class="max-w-md mx-auto mt-8">
+    <form th:action="@{/getOtpPage}" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+                Enter your otp
+            </label>
+            <input name="otp" type="text" placeholder="Enter your otp" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+
+        <input type="hidden" th:value="${user.email}" name="email">
+
+        <button type="submit" value="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            Submit
+        </button>
+        <p class="text-red-500 text-xs italic mt-2" th:text="${message}"></p>
+    </form>
+</div>
+</body>
+</html>
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Otp Page</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--   <div class="card">-->
+<!--       <form th:action="@{/getOtpPage}" method="post">-->
+
+
+<!--               <input name="otp"  type="text" placeholder="Enter your otp">-->
+<!--               <input type="hidden" th:value="${user.email}" name="email">-->
+
+
+<!--           <button type="submit" value="submit"> submit</button>-->
+<!--           <p class="alert" th:text="${message}"></p>-->
+<!--       </form>-->
+
+<!--   </div>-->
+<!--</body>-->
+<!--</html>-->
