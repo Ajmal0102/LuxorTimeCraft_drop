@@ -9,94 +9,212 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
           integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <title>Register</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title> Signup | LuxorTimeCraft </title>
+
     <style>
-        body {
-          background-color: #f8f9fa;
+        /* CSS for Sign Up Form */
+        body{
+            background-color: #E5E5E5;
         }
-        .login-card {
-          max-width: 400px;
-          margin: 50px auto;
-          padding: 20px;
-          border: 1px solid #ccc;
-          border-radius: 5px;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-          background-color: #fff;
+        .container {
+            background-color: #14213D;
+            padding: 20px;
+            border-radius: 50px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            margin: 0 auto; /* Center the container horizontally */
+            margin-top: 20px; /* Add margin to the top */
+            margin-bottom: 30px;/* Add margin to the bottom */
+            padding: 20px; /* Add padding */
+
         }
-        .custom-bg {
-            background-color: #2d3748;
+        /* input{
+            border-radius: 50px;
+        } */
+
+        h3 {
+            color: #FCA311;
+            margin-top: 10px;
         }
+        p{
+            color: #FCA311;
+        }
+        span{
+            color: #FCA311;
+        }
+
+        label {
+            color: #FCA311;
+        }
+        nav {
+            background-color: #14213D;
+        }
+
+        .form-control {
+            background-color: #14213D;
+            color: #FCA311;
+            border: 1px solid #FCA311;
+        }
+
+        .form-group input[type="email"] {
+            background-color: #14213D;
+            color: #FCA311;
+            border: 1px solid #FCA311;
+        }
+
+        .form-group small {
+            color: #FCA311;
+        }
+
+        .btn-primary {
+            background-color: #FCA311;
+            color: #000000;
+            border: none;
+        }
+
+        .linkControl {
+            color: #FCA311;
+            text-decoration: none;
+        }
+
+        a {
+            color: #FCA311;
+        }
+        .alert{
+          color:red;
+            }
     </style>
+    <!--  <script th:inline="javascript">-->
+    <!--    setTimeout(function() {-->
+    <!--        var alertElement = document.querySelector('.alert');-->
+    <!--        if (alertElement) {-->
+    <!--            alertElement.style.display = 'none';-->
+    <!--        }-->
+    <!--    }, 1000); // 30 seconds-->
+    <!--  </script>-->
 </head>
 <body>
 
 
-<nav class="navbar navbar-expand-lg navbar-dark custom-bg">
-    <div class="container">
+<nav class="navbar navbar-expand-lg  navbar-custom" >
+    <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <span class="text-white">LuxorTimeCraft</span>
+            <img th:src="@{/images/logo.png}"  src="../static/images/logo.png" width="auto" height="80" class="d-inline-block align-top" alt=""/>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a th:href="@{/}" class="nav-link text-white" href="#">Home</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/}" href="#">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a th:href="@{/shop}" class="nav-link text-white" href="#">Shop</a>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/shop}" href="#">Shop</a>
                 </li>
-                <li class="nav-item">
-                    <a th:href="@{/register}" class="nav-link text-white" href="#">SignUp</a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Sign Up</a>
                 </li>
+
             </ul>
+
         </div>
     </div>
 </nav>
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-sm-12 mx-auto">
-            <div class="login-card">
-                <h3 style="margin-top: 10px">Sign Up Now</h3>
-                <p>Please fill out this to register</p>
-                <form th:action="@{/register}" th:object="${user}" method="post">
-                    <div class="form-group">
-                        <label for="firstName">First Name</label>
-                        <input type="text" name="firstName" id="firstName" required placeholder="Your Firstname" class="form-control form-control-lg">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Last Name</label>
-                        <input type="text" name="lastName" id="lastName" required placeholder="Your Lastname" class="form-control form-control-lg">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email address</label>
-                        <input type="email" class="form-control form-control-lg" required minlength="6" placeholder="Email" name="email" id="email"
-                               aria-describedby="emailHelp">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with
-                            anyone else.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control form-control-lg" required placeholder="Password" name="password"
-                               id="password">
-                    </div>
-                    <div th:if="${errMsg}" class="alert alert-danger mt-2 mb-2" role="alert">
-                        <span th:text="${errMsg}"></span>
-                    </div>
+<div class="container p-5">
+    <!-- Add this to your register page -->
+    <div th:if="${errorMessage}" class="alert alert-danger mt-5">
+        <p th:text="${errorMessage}"></p>
+    </div>
 
-                    <input type="submit" value="Register" class="btn btn-primary btn-block">
-                    <span style="margin-top: 10px">Already have an account <a class="linkControl" href="login.html"
-                                                                              th:href="@{/login}">Login here</a></span>
-
-
-                </form>
-            </div>
+    <div class="col-sm-6 navbar-text">
+        <h3 style="margin-top: 10px">Sign Up Now</h3>
+        <p>Please fill out this to register</p>
+        <div th:if="${param.userExist != null}">
+            <p class="alert">User already exists!</p>
         </div>
+
+        <form th:action="@{/register}" th:object="${user}" method="post">
+
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input th:field="*{firstName}" type="text" name="firstName" id="firstName" placeholder="Your First Name" class="form-control form-control-lg" style="border-radius: 50px;">
+            </div>
+            <div th:if="${#fields.hasErrors('firstName')}"
+                 style="margin-bottom: 25px" class="text-danger">
+                <ul>
+                    <li th:each="err : ${#fields.errors('firstName')}" th:text="'First name ' + ${err}"></li>
+                </ul>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input th:field="*{lastName}" type="text" name="lastName" id="lastName" placeholder="Your Last Name" class="form-control form-control-lg" style="border-radius: 50px;">
+            </div>
+            <div th:if="${#fields.hasErrors('lastName')}"
+                 style="margin-bottom: 25px" class="text-danger">
+                <ul>
+                    <li th:each="err : ${#fields.errors('lastName')}" th:text="'Last name ' + ${err}"></li>
+                </ul>
+            </div>
+
+            <div class="form-group">
+                <label for="phoneNumber">Phone Number</label>
+                <input th:field="*{phoneNumber}" type="email" class="form-control form-control-lg" placeholder="Phone Number" name="phoneNumber" id="phoneNumber"
+                       aria-describedby="phoneNumberHelp" style="border-radius: 50px;">
+            </div>
+            <div th:if="${#fields.hasErrors('phoneNumber')}"
+                 style="margin-bottom: 25px" class="text-danger">
+                <ul>
+                    <li th:each="err : ${#fields.errors('phoneNumber')}" th:text="'Phone Number ' + ${err}"></li>
+                </ul>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input th:field="*{email}" type="email" class="form-control form-control-lg" placeholder="Email" name="email" id="email"
+                       aria-describedby="emailHelp" style="border-radius: 50px;">
+            </div>
+            <div th:if="${#fields.hasErrors('email')}"
+                 style="margin-bottom: 25px" class="text-danger">
+                <ul>
+                    <li th:each="err : ${#fields.errors('email')}" th:text="'Email ' + ${err}"></li>
+                </ul>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input th:field="*{password}" type="password" class="form-control form-control-lg" placeholder="Password" name="password"
+                       id="password" style="border-radius: 50px;">
+            </div>
+            <div th:if="${#fields.hasErrors('password')}"
+                 style="margin-bottom: 25px" class="text-danger mb-3">
+                <ul>
+                    <li th:each="err : ${#fields.errors('password')}" th:text="'Password ' + ${err}"></li>
+                </ul>
+            </div>
+
+            <!-- <div class="form-group">
+              <label for="userReferralCode">ReferralCode</label>
+              <input th:field="*{userReferralCode}" type="text" class="form-control form-control-lg" placeholder="optional" name="userReferralCode"
+              id="userReferralCode" style="border-radius: 50px;">
+            </div> -->
+
+            <div th:if="${errMsg}" class="alert alert-danger mt-2 mb-2" role="alert">
+                <span th:text="${errMsg}"></span>
+            </div>
+
+            <input type="submit" value="Register" class="btn btn-primary btn-block mt-5 mb-5">
+
+            <span style="margin-top: 10px" class="mt-5">Already have an account ? <a class="linkControl" href="./login.html" th:href="@{/login}">Login here</a></span>
+
+        </form>
     </div>
 </div>
+
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

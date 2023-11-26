@@ -3,6 +3,7 @@ package com.ajmal.LuxorTimeCraft.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
+import org.springframework.format.annotation.NumberFormat;
 
 import java.util.List;
 
@@ -24,6 +25,10 @@ public class User {
     private boolean isActive;
 
     private boolean isVerified;
+
+//    @Column(nullable = false, unique = true)
+//    @NotEmpty
+//    private long phoneNumber;
 
     @Column(nullable = false, unique = true)
     @NotEmpty
@@ -48,6 +53,7 @@ public class User {
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.roles = user.getRoles();
+//        this.phoneNumber = user.getPhoneNumber();
     }
     public User(){
 
