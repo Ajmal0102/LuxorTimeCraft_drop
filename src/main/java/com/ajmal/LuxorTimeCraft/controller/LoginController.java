@@ -42,6 +42,7 @@ public class LoginController {
 
     @GetMapping("/register")
     public String getRegister(){
+        System.out.println("in register controller");
 
         return "register";
     }
